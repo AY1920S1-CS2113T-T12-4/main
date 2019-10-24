@@ -30,8 +30,8 @@ public class RecipeIngredientList {
         return arrList;
     }
 
-    public void addRecipeIngredient(int ingredientIndex, String ingredientName, double quantity, String weight) throws ParseException {
-        recipeIngredientList.add(new RecipeIngredient(ingredientIndex, ingredientName, quantity, weight));
+    public void addRecipeIngredient(String ingredientIndex, String ingredientName, String quantity, String weight, String additonalInfo) throws ParseException {
+        recipeIngredientList.add(new RecipeIngredient(ingredientIndex, ingredientName, quantity, weight, additonalInfo));
         int index = recipeIngredientList.size();
         if (index == 1) {
             msg = " task in the list.";
@@ -59,5 +59,17 @@ public class RecipeIngredientList {
 
     public ArrayList<RecipeIngredient> getRecipeIngredientList() {
         return recipeIngredientList;
+    }
+
+    public String toSaveString() {
+        String joinedString = "";
+        if (recipeIngredientList.isEmpty()) {
+            joinedString = "No required ingredient.";
+        }
+        for (RecipeIngredient recipeIngredient : recipeIngredientList) {
+            String.join(recipeIngredient.toSaveString(), joinedString);
+            String.join(" | ", joinedString);
+        }
+        return joinedString;
     }
 }

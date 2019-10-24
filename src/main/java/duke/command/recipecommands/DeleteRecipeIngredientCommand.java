@@ -1,12 +1,9 @@
 package duke.command.recipecommands;
 
-import duke.command.CommandRecipeIngredient;
-import duke.command.CommandRecipeTitle;
+import duke.command.Command;
 import duke.exception.DukeException;
 import duke.list.recipelist.RecipeIngredientList;
-import duke.list.recipelist.RecipeTitleList;
 import duke.storage.RecipeIngredientStorage;
-import duke.storage.RecipeTitleStorage;
 import duke.ui.Ui;
 
 import java.text.ParseException;
@@ -19,12 +16,12 @@ import static duke.common.Messages.ERROR_MESSAGE_INVALID_INDEX;
 import static duke.common.Messages.ERROR_MESSAGE_UNKNOWN_INDEX;
 import static duke.common.Messages.ERROR_MESSAGE_RANDOM;
 import static duke.common.RecipeMessages.COMMAND_DELETE_RECIPE_INGREDIENT;
-import static duke.common.RecipeMessages.MESSAGE_DELETE_RECIPE;
+import static duke.common.RecipeMessages.MESSAGE_RECIPE_DELETED;
 
 /**
  * Handles the delete command and inherits all the fields and methods of Command parent class.
  */
-public class DeleteRecipeIngredientCommand extends CommandRecipeTitle<RecipeIngredientList, Ui, RecipeIngredientStorage> {
+public class DeleteRecipeIngredientCommand extends Command<RecipeIngredientList, Ui, RecipeIngredientStorage> {
 
     /**
      * Constructor for class DeleteCommand.
@@ -33,11 +30,6 @@ public class DeleteRecipeIngredientCommand extends CommandRecipeTitle<RecipeIngr
     public DeleteRecipeIngredientCommand(String userInput) {
         this.userInput = userInput;
     }
-
-//    @Override
-//    public ArrayList<String> execute(RecipeTitleList recipeTitleList, Ui ui, RecipeTitleStorage recipeTitleStorage) throws DukeException, ParseException {
-//        return null;
-//    }
 
     @Override
     public ArrayList<String> execute(RecipeIngredientList recipeIngredientList, Ui ui, RecipeIngredientStorage recipeIngredientStorage) throws DukeException, ParseException {
@@ -56,7 +48,7 @@ public class DeleteRecipeIngredientCommand extends CommandRecipeTitle<RecipeIngr
                         arrayList.add(ERROR_MESSAGE_INVALID_INDEX + recipeIngredientList.getSize() + ".");
                     }
                 } else {
-                    arrayList.add(MESSAGE_DELETE_RECIPE + "         " + recipeIngredientList.getRecipeIngredientList().get(index - 1));
+                    arrayList.add(MESSAGE_RECIPE_DELETED + "         " + recipeIngredientList.getRecipeIngredientList().get(index - 1));
                     recipeIngredientList.deleteIngredient(index - 1);
                     recipeIngredientStorage.saveFile(recipeIngredientList);
                 }

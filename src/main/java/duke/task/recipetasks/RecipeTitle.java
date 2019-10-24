@@ -5,8 +5,16 @@ public class RecipeTitle {
     private String recipeTitle;
     private int index;
 
-    public RecipeTitle(int index, String recipeTitle) {
+    public RecipeTitle(String recipeTitle) {
         this.recipeTitle = recipeTitle;
+    }
+
+    public RecipeTitle(Integer index, String recipeTitle) {
+        this.recipeTitle = recipeTitle;
+        this.index = index;
+    }
+
+    public RecipeTitle(int index) {
         this.index = index;
     }
 
@@ -14,7 +22,7 @@ public class RecipeTitle {
         return this.index;
     }
 
-    public String getName() {
+    public String getTitle() {
         return this.recipeTitle;
     }
 
